@@ -1,9 +1,12 @@
 # Breast Cancer Recurrence Prediction
-[Video Demo](https://github.com/SherwynM/Breast-cancer/tree/main/vid.mp4)
 
 This project is a Django web application designed to predict the likelihood of breast cancer recurrence based on patient data. The prediction is powered by a machine learning model trained on breast cancer-related datasets.
 
 ---
+
+https://github.com/user-attachments/assets/5ca54d81-18de-47e0-b400-28eb8d53114a
+
+
 
 ## Features
 
