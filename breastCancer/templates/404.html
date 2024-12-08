@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <!--<link rel="stylesheet" href="static/404.css">-->
+
+    <Style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    z-index: 10;
+}
+
+/* Error Code */
+.error-code {
+    font-size: 150px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+/* Title */
+.title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Description */
+.description {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+/* Home Button */
+.home-button {
+    text-decoration: none;
+    padding: 12px 25px;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #2980b9;
+}
+
+/* Background Animation */
+.background-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(46, 204, 113, 0.2);
+    animation: move 10s linear infinite;
+}
+
+.small {
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    left: -50px;
+    animation-duration: 8s;
+}
+
+.medium {
+    width: 150px;
+    height: 150px;
+    top: 50px;
+    left: 50px;
+    animation-duration: 12s;
+}
+
+.large {
+    width: 200px;
+    height: 200px;
+    top: 100px;
+    left: 100px;
+    animation-duration: 16s;
+}
+
+@keyframes move {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(150px, 150px);
+    }
+    50% {
+        transform: translate(300px, 0);
+    }
+    75% {
+        transform: translate(150px, -150px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+
+    </Style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="title">Page Not Found</h1>
+        <p class="description">
+            Oops! The page you're looking for doesn't exist. 
+            It might have been moved or deleted.
+        </p>
+        <a href="/" class="home-button">Return to Home</a>
+    </div>
+
+    <div class="background-animation">
+        <div class="circle small"></div>
+        <div class="circle medium"></div>
+        <div class="circle large"></div>
+    </div>
+</body>
+</html>

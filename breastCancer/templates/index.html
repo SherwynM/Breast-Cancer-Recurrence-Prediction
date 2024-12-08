@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Recurrence Form</title>
+    
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+
+    
+    <div class='ripple-background'>
+        <div class='circle large shade3'></div>
+        <div class='circle mediun shade4'></div>
+        <div class='circle small shade5'></div>
+      </div>
+
+
+    <div class="form-container">
+        <div class="title-box">
+            <h1>Breast Cancer Recurrence Prediction</h1>
+        </div>
+        <h2>Details</h2>
+        <form id="recurrence-form" method="post">
+            {% csrf_token %}
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="Age" required min="1" step="1" pattern="\d+" title="Please enter a whole number">
+
+            <label for="menopausal-status">Menopausal Status</label>
+            <div id="menopausal-status" class="button-group">
+                <button type="button" class="btn" id="pre-menopausal" value="Premenopausal">Premenopausal</button>
+                <button type="button" class="btn" id="post-menopausal" value="Postmenopausal">Postmenopausal</button>
+                <input type="hidden" id="menopausal-status-input" name="MenopausalStatus" required>
+            </div>
+
+            <label for="tumor-size">Tumor Size (mm):</label>
+            <input type="number" id="tumor-size" name="TumorSize" required min="0" step="1" pattern="\d+" title="Please enter a valid number">
+
+            <label for="tumor-grade">Tumor Grade</label>
+            <div id="tumor-grade" class="button-group">
+                <button type="button" class="btn" id="T1" value="T1">T1</button>
+                <button type="button" class="btn" id="T2" value="T2">T2</button>
+                <button type="button" class="btn" id="T3" value="T3">T3</button>
+                <input type="hidden" id="tumor-grade-input" name="TumorGrade" required>
+            </div>
+
+            <label for="nodes-positive">Nodes Positive:</label>
+            <input type="number" id="nodes-positive" name="NodesPositive" required min="0" step="1" placeholder="Please Enter number of positive nodes:" title="Please enter a valid number">
+
+
+
+
+            <label for="progesterone-receptor">Progesterone Receptor Level:</label>
+            <input type="text" id="progesterone-receptor" name="ProgesteroneReceptor" required pattern="\d+" placeholder="Please Enter Your Progesterone Level: (fmol/l)" title="Please enter a valid number">
+
+            <label for="estrogen-receptor">Estrogen Receptor Level:</label>
+            <input type="text" id="estrogen-receptor" name="EstrogenReceptor" required pattern="\d+" placeholder="Please Enter Your Estrogen Level: (fmol/l)" title="Please enter a valid number">
+
+            
+            <label for="hormonal-therapy">Hormonal Therapy Status:</label>
+            <div id="hormonal-therapy" class="button-group">
+                <button type="button" class="btn" id="yes" value="Yes">Yes</button>
+                <button type="button" class="btn" id="no" value="No">No</button>
+                <input type="hidden" id="hormonal-therapy-input" name="HormonalTherapy" required>
+            </div>
+
+            <label for="rfstime">Recurrence-Free Survival Time:</label>
+            <input type="number" id="rfstime" name="rfstime" required min="0" step="0.1" placeholder="Elapsed time since initial treatment to recurrence of a disease" title="Please enter a valid number">
+
+            <button type="submit" >Submit</button>
+            {% if prediction %}
+            <p>{{ prediction }}</p>
+            {% endif %}
+        </form>
+    </div>
+
+    <script>
+        // Function to handle button selection
+        function handleButtonClick(buttonGroup, inputId, value) {
+            const buttons = document.querySelectorAll(`#${buttonGroup} .btn`);
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById(inputId).value = value;
+            document.getElementById(buttonGroup).querySelector(`button[value="${value}"]`).classList.add('active');
+        }
+
+        // Menopausal Status
+        document.getElementById('pre-menopausal').addEventListener('click', () => {
+            handleButtonClick('menopausal-status', 'menopausal-status-input', 'Premenopausal');
+        });
+        document.getElementById('post-menopausal').addEventListener('click', () => {
+            handleButtonClick('menopausal-status', 'menopausal-status-input', 'Postmenopausal');
+        });
+
+        // Tumor Grade
+        document.getElementById('T1').addEventListener('click', () => {
+            handleButtonClick('tumor-grade', 'tumor-grade-input', 'T1');
+        });
+        document.getElementById('T2').addEventListener('click', () => {
+            handleButtonClick('tumor-grade', 'tumor-grade-input', 'T2');
+        });
+        document.getElementById('T3').addEventListener('click', () => {
+            handleButtonClick('tumor-grade', 'tumor-grade-input', 'T3');
+        });
+
+        // Hormonal Therapy
+        document.getElementById('yes').addEventListener('click', () => {
+            handleButtonClick('hormonal-therapy', 'hormonal-therapy-input', 'Yes');
+        });
+        document.getElementById('no').addEventListener('click', () => {
+            handleButtonClick('hormonal-therapy', 'hormonal-therapy-input', 'No');
+        });
+
+        // Form validation to ensure all required fields are filled
+        document.getElementById('recurrence-form').addEventListener('submit', (event) => {
+            const hiddenFields = ['menopausal-status-input', 'tumor-grade-input', 'hormonal-therapy-input'];
+            let isValid = true;
+
+            hiddenFields.forEach(id => {
+                if (!document.getElementById(id).value) {
+                    alert(`Please select a value for ${id.replace('-input', '').replace('-', ' ')}`);
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
