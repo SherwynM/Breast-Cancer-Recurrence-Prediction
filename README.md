@@ -1,3 +1,7 @@
+
+
+Uploading vid.mp4…
+
 # Breast Cancer Recurrence Prediction
 
 This project is a Django-based web application designed to predict the recurrence of breast cancer based on patient-provided clinical data. The application utilizes a trained Support Vector Classifier (SVC) model to classify whether a recurrence is likely. The goal is to assist healthcare professionals by providing a data-driven prediction.
