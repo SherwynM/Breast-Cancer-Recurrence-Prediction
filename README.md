@@ -1,38 +1,39 @@
 # Breast Cancer Recurrence Prediction
 
-This project is a Django web application designed to predict the likelihood of breast cancer recurrence based on patient data. The prediction is powered by a machine learning model trained on breast cancer-related datasets.
+This project is a Django-based web application designed to predict the recurrence of breast cancer based on patient-provided clinical data. The application utilizes a trained Support Vector Classifier (SVC) model to classify whether a recurrence is likely. The goal is to assist healthcare professionals by providing a data-driven prediction.
 
 ---
 
-https://github.com/user-attachments/assets/5ca54d81-18de-47e0-b400-28eb8d53114a
-
-
-
 ## Features
 
-- **User Input Form**: Collects patient data such as age, menopausal status, tumor size, and more.
-- **Machine Learning Prediction**: Uses a trained model to predict whether cancer recurrence is likely.
-- **Custom 404 Page**: Displays a styled "Page Not Found" error page for invalid URLs.
+- **Interactive User Interface**: A form to input patient data such as age, menopausal status, tumor size, tumor grade, and hormonal therapy details.
+- **Machine Learning-Powered Predictions**: Leverages a trained Support Vector Classifier (SVC) model to predict recurrence.
+- **Error Handling**: Includes a custom-styled 404 error page for invalid URLs.
+- **Preprocessing and Scaling**: Data preprocessing steps ensure compatibility with the trained model for accurate predictions.
+- **Scalable Design**: Modular codebase to add more features or integrate with external systems easily.
 
 ---
 
 ## How It Works
 
-1. User inputs patient details in a web form.
-2. The data is preprocessed to match the model's requirements.
-3. A trained machine learning model predicts the recurrence status (No Recurrence or Recurrence).
-4. The prediction result is displayed on the same page.
+1. **Input**: User provides details like age, menopausal status, tumor characteristics, and hormonal therapy information.
+2. **Preprocessing**: Data is normalized using a `scaler.pkl` file, ensuring the format matches the training dataset.
+3. **Prediction**: The `svc_model.pkl` predicts the recurrence status using the input data.
+4. **Output**: Displays a message indicating whether the patient is likely to experience a recurrence or not.
 
 ---
 
 ## Requirements
 
-Ensure the following tools are installed on your system:
+The following dependencies are required to run the application:
 
 - Python 3.8+
 - Django 4.2+
 - Pandas
 - Joblib
+- Scikit-learn
+
+Ensure you have these installed on your system.
 
 ---
 
